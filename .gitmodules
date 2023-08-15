@@ -1,0 +1,3 @@
+[submodule "moderncv-cv"]
+	path = moderncv-cv
+	url = git@github.com:slabstone/moderncv-cv.git
