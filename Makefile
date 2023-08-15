@@ -1,4 +1,6 @@
+SOURCE_FILENAME = moderncv-cv/cv.tex
+
 .PHONY: build
 
 build:
-	@docker build --output . .
+	@docker build --build-arg filename=$(SOURCE_FILENAME) --output . .

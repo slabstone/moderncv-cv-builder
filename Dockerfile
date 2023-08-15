@@ -1,8 +1,13 @@
 FROM thomasweise/docker-texlive-full:2.0 as builder
-WORKDIR /usr/src/moderncv
-COPY moderncv-cv/cv.tex ./
+ARG workdir=/usr/src/moderncv
+ARG filename
 
-RUN latexmk -pdf cv.tex
+WORKDIR ${workdir}
+COPY ${filename} .
+
+RUN latexmk -pdf $(basename ${filename})
 
 FROM scratch AS exporter
-COPY --from=builder /usr/src/moderncv/cv.pdf .
+ARG workdir=/usr/src/moderncv
+
+COPY --from=builder ${workdir}/*.pdf .
